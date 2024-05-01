@@ -11,6 +11,8 @@
         <sequence>
             <module name="Magento_Contact"/>
             <module name="Magento_ContactGraphQl"/>
+            <module name="Magento_Customer"/>
+            <module name="Magento_CustomerGraphQl"/>
             <module name="Space_KeepContacts"/>
         </sequence>
     </module>

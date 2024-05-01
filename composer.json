@@ -9,11 +9,14 @@
     "config": {
         "sort-packages": true
     },
-    "version": "0.1.0",
+    "version": "1.0.0",
     "require": {
         "php": "~8.1.0||~8.2.0||~8.3.0",
         "magento/framework": "103.0.*",
         "magento/module-contact": "100.4.*",
+        "magento/module-contact-graph-ql": "100.4.*",
+        "magento/module-customer": "103.0.*",
+        "magento/module-customer-graph-ql": "100.4.*",
         "space/module-keep-contacts": "1.0.*"
     },
     "suggest": {
