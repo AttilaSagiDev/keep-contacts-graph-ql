@@ -2,14 +2,14 @@
 
 ## Description ##
 
-This extension will add GraphQL support to the Keep Contacts Magento 2 module. Adding support to save contacts when the contact us form called via the contactUs mutation with GraphQL.
+This extension will add GraphQL support to the Keep Contacts Magento 2 module. Adding support to save contacts when the Contact Us form is called via the contactUs mutation with GraphQL.
 
-Also adding support for get previously saved contacts list for a specific customer which has an account in the store.
+Also adding support for getting previously saved contacts list for a specific customer who has an account in the store.
 
 ## Features ##
 
 - Adding support to save contact while using the contactUs GraphQL mutation
-- Adding support to receive list of contacts for registered customers via GraphQL query
+- Adding support to receive a list of contacts for registered customers via GraphQL query
 
 It is a separate module that does not change the default Magento files.
 
