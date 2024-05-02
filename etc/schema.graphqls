@@ -1,0 +1,28 @@
+# Copyright (c) 2024 Attila Sagi
+# @license http://www.opensource.org/licenses/mit-license.html  MIT License
+
+type Query {
+    customerContacts (
+        pageSize: Int = 10 @doc(description: "Specifies the maximum number of results to return at once. The default value is 10.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+    ): CustomerContactList @resolver(class: "Space\\KeepContactsGraphQl\\Model\\Resolver\\CustomerContacts") @doc(description: "Return contacts list from Space Keep Contacts module.")
+
+}
+
+type CustomerContactList @doc(description: "Contains a collection of `Contact` objects and pagination information.") {
+    items: [Contact] @doc(description: "A list of contacts that match the filter criteria.")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the `page_info` and `currentPage` values specified in the query.")
+    total_count: Int @doc(description: "The total number of contacts that match the criteria.")
+}
+
+type Contact @doc(description: "Defines details about an individual customer contact.") {
+    contact_id: Int! @doc(description: "The ID for a contact.")
+    name: String! @doc(description: "Required. The name of the customer.")
+    email: String! @doc(description: "Required. The email of the customer.")
+    telephone: String! @doc(description: "Required. The telephone of the customer.")
+    comment: String! @doc(description: "Required. The comment of the customer.")
+    answer: String! @doc(description: "Required. The answer sent by the admin.")
+    creation_time: String! @doc(description: "Required. The creation time of the contact.")
+    update_time: String! @doc(description: "Required. The update time of the contact.")
+    is_answered: Int! @doc(description: "Required. Indicates whether contact is answered or not.")
+}
