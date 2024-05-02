@@ -11,6 +11,7 @@ namespace Space\KeepContactsGraphQl\Model\Resolver;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Space\KeepContactsGraphQl\Model\Resolver\DataProvider\ContactList as ContactListDataProvider;
 use Magento\CustomerGraphQl\Model\Customer\GetCustomer;
+use Space\KeepContacts\Api\Data\ConfigInterface;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\Resolver\ContextInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
@@ -33,17 +34,25 @@ class CustomerContacts implements ResolverInterface
     private GetCustomer $getCustomer;
 
     /**
+     * @var ConfigInterface
+     */
+    private ConfigInterface $config;
+
+    /**
      * Constructor
      *
      * @param ContactListDataProvider $contactListDataProvider
      * @param GetCustomer $getCustomer
+     * @param ConfigInterface $config
      */
     public function __construct(
         ContactListDataProvider $contactListDataProvider,
-        GetCustomer $getCustomer
+        GetCustomer $getCustomer,
+        ConfigInterface $config
     ) {
         $this->contactListDataProvider = $contactListDataProvider;
         $this->getCustomer = $getCustomer;
+        $this->config = $config;
     }
 
     /**
@@ -66,6 +75,10 @@ class CustomerContacts implements ResolverInterface
         array $value = null,
         array $args = null
     ): array {
+        if (!$this->config->isEnabled()) {
+            throw new GraphQlInputException(__('Keep Contacts module is not enabled.'));
+        }
+
         /** @var QueryContext $context */
         if (false === $context->getExtensionAttributes()->getIsCustomer()) {
             throw new GraphQlAuthorizationException(__('The current customer isn\'t authorized.'));
